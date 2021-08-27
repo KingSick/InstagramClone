@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from 'react';
 
-function App() {
+const App = (): ReactElement => {
   return <div className="App">Instagram Clone</div>;
-}
+};
 
 export default App;
