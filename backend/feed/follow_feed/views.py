@@ -1,11 +1,12 @@
 # from rest_framework import permissions
 from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from feed.models import Feed
 from feed.serializers import FeedSerializer
 
 
-class TemplateView(APIView):
+class FollowFeedView(APIView):
 
     # view endpoint 접근권한 설정
     # permissions.IsAuthenticated: 로그인한 사람
@@ -21,9 +22,9 @@ class TemplateView(APIView):
         feed_query_set = Feed.objects.all()
 
         # serialize feed_query_set (query_set -> dict)
-        feed_data = FeedSerializer(feed_query_set).data
+        feed_data = FeedSerializer(feed_query_set, many=True).data
 
-        return {'success': True, 'data': feed_data}
+        return Response({'success': True, 'data': feed_data})
 
     @staticmethod
     def put(request):
@@ -40,7 +41,7 @@ class TemplateView(APIView):
         feed_data.name = body_data
         feed_data.save()
 
-        return {'success': True}
+        return Response({'success': True})
 
     @staticmethod
     def post(request):
@@ -50,7 +51,7 @@ class TemplateView(APIView):
         # feed data create
         Feed.objects.create(name=body_data)
 
-        return {'success': True}
+        return Response({'success': True})
 
     @staticmethod
     def delete(request):
@@ -59,9 +60,9 @@ class TemplateView(APIView):
 
         feed_query_set = Feed.objects.filter(name='key_name')
         if not feed_query_set.exists():
-            return {'success': False, 'message': 'not found data'}
+            return Response({'success': False, 'message': 'not found data'})
 
         feed_data = feed_query_set.first()
         feed_data.delete()
 
-        return {'success': True}
+        return Response({'success': True})
