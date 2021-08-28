@@ -10,5 +10,5 @@ class Member(models.Model):
 
 
 class Follow(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    follow = models.ForeignKey(Member, on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='is_my')
+    follow = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='is_follow')
