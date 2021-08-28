@@ -15,7 +15,7 @@ from pathlib import Path
 import json
 
 
-with open('./secret.json', 'r', encoding='utf-8') as f:
+with open('./insta_server/secret.json', 'r', encoding='utf-8') as f:
     secret = json.load(f)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
