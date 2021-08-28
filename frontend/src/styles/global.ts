@@ -6,4 +6,11 @@ export default createGlobalStyle`
     * {
         box-sizing: border-box;
     }
+    html, body, #root {
+        height: 100%;
+        background-color: #FAFAFA;
+    }
+    a {
+        all: unset;
+    }
 `;
